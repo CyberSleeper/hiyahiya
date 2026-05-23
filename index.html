@@ -35,6 +35,7 @@
     <div class="container">
         <h1>DEADLINE SKRIPSI</h1>
         <div id="countdown">Loading...</div>
+        <div id="quote-container" style="margin-top: 40px; font-size: 1.5rem; font-style: italic; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.4;"></div>
     </div>
 
     <script>
@@ -83,6 +84,27 @@
         // Run as fast as the browser reasonably allows for smooth ms updates
         setInterval(updateCountdown, 25);
         updateCountdown();
+
+        const quotes = [
+            "\"The secret of getting ahead is getting started.\" - Mark Twain",
+            "\"It always seems impossible until it's done.\" - Nelson Mandela",
+            "\"Don't watch the clock; do what it does. Keep going.\" - Sam Levenson",
+            "\"The way to get started is to quit talking and begin doing.\" - Walt Disney",
+            "\"A year from now you may wish you had started today.\" - Karen Lamb",
+            "\"You don't have to be great to start, but you have to start to be great.\" - Zig Ziglar",
+            "\"Done is better than perfect.\" - Sheryl Sandberg",
+            "\"There is no substitute for hard work.\" - Thomas Edison",
+            "\"I find that the harder I work, the more luck I seem to have.\" - Thomas Jefferson",
+            "\"Success is the sum of small efforts, repeated day in and day out.\" - Robert Collier",
+            "\"Do what you can, with what you have, where you are.\" - Theodore Roosevelt"
+        ];
+
+        function displayRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById("quote-container").textContent = quotes[randomIndex];
+        }
+
+        displayRandomQuote();
     </script>
 </body>
 </html>
