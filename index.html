@@ -45,6 +45,27 @@
         const targetDate = new Date(Date.UTC(2026, 5, 10, 16, 59, 0, 0));
         // Note: month is 0-based; 11 = December
 
+        let countdownTimer = null;
+
+        function showAppreciation() {
+            document.title = "THANK YOU 🎉";
+            // Soften the urgent red into a calm, celebratory green.
+            document.body.style.backgroundColor = "#0f9d58";
+            document.body.style.transition = "background-color 1.5s ease";
+
+            const heading = document.querySelector("h1");
+            heading.textContent = "TIME'S UP — YOU MADE IT! 🎉";
+
+            const countdownElement = document.getElementById("countdown");
+            countdownElement.textContent = "Thank you 🙏";
+
+            const quoteContainer = document.getElementById("quote-container");
+            quoteContainer.innerHTML =
+                "To everyone who fought through and gave their very best —<br>" +
+                "the late nights, the endless revisions, and pushing on when it was hard:<br><br>" +
+                "<strong>your hard work was not in vain. Be proud — you did it. 🙌</strong>";
+        }
+
         function updateCountdown() {
             const now = new Date();
             const diff = targetDate.getTime() - now.getTime(); // ms difference
@@ -52,7 +73,11 @@
             const countdownElement = document.getElementById("countdown");
 
             if (diff <= 0) {
-                countdownElement.textContent = "00d 00h 00m 00s 000ms";
+                if (countdownTimer !== null) {
+                    clearInterval(countdownTimer);
+                    countdownTimer = null;
+                }
+                showAppreciation();
                 return;
             }
 
@@ -82,7 +107,7 @@
         }
 
         // Run as fast as the browser reasonably allows for smooth ms updates
-        setInterval(updateCountdown, 25);
+        countdownTimer = setInterval(updateCountdown, 25);
         updateCountdown();
 
         const quotes = [
